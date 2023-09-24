@@ -5,39 +5,38 @@ import User from '@models/user';
 
 const handler = NextAuth({
     providers: [
-        GoogleProvider({ clientId: process.env.GOOGLE_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET })
+        GoogleProvider({ clientId: process.env.GOOGLE_ID, clientSecret: process.env.GOOGLE_CLIENT_SECRET, checks: ["none"] })
     ],
-    async session({ session }) {
+    callbacks: {
 
-        const sessionUser = await User.findOne({ email: session.user.email });
+        async session({ session }) {
 
-        session.user.id = sessionUser._id.toString();
-        return session;
+            const sessionUser = await User.findOne({ email: session.user.email });
 
-    },
-    async signIn({ profile }) {
+            session.user.id = sessionUser._id.toString();
+            return session;
 
-        try {
-            await connectToDB();
+        },
+        async signIn({ profile }) {
 
-            const userExists = await User.findOne({ email: profile.emal });
+            try {
+                await connectToDB();
 
-            if (!userExists) {
-                await User.create({
-                    email: profile.email,
-                    username: profile.name.replace(" ", "").toLowerCase(),
-                    image: profile.picture
-                });
+                const userExists = await User.findOne({ email: profile.email });
+
+                if (!userExists) {
+                    await User.create({
+                        email: profile.email,
+                        username: profile.name.replaceAll(" ", "").replaceAll(".", "").replaceAll("_", "").toLowerCase(),
+                        image: profile.picture
+                    });
+                }
+                return true;
+            } catch (error) {
+                console.log(error);
+                return false;
             }
-
-            return true;
-
-        } catch (error) {
-            console.log(error);
-            return false;
-
         }
-
     }
 });
 

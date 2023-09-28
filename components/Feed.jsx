@@ -13,7 +13,6 @@ const PromptCardList = ({ data, handleTagClick }) => {
 };
 
 
-
 const Feed = () => {
 
     const [searchText, setSearchText] = useState('');
@@ -33,8 +32,8 @@ const Feed = () => {
         setSearchText(e.target.value);
     };
 
-    const handleTagClick = () => {
-
+    const handleTagClick = (tag) => {
+        setSearchText(tag);
     };
 
 

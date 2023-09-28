@@ -33,10 +33,6 @@ const EditPrompt = () => {
         e.preventDefault();
 
         setsubmitting(true);
-        if (!promptId)
-            alert('Prompt ID not Found');
-
-
 
         try {
             const response = await fetch(`/api/prompt/${promptId}`,
@@ -57,11 +53,12 @@ const EditPrompt = () => {
         } finally {
             setsubmitting(false);
         }
-
     };
 
     return (
-        <Form type="Edit" post={post} setPost={setPost} submitting={submitting} handleSubmit={updatePrompt} />
+        promptId ?
+            <Form type="Edit" post={post} setPost={setPost} submitting={submitting} handleSubmit={updatePrompt} />
+            : <div className="mt-20 text-lg text-gray-800 text-bl sm:text-xl max-w-2xl text-center">Prompt ID not found. <br />Login to edit prompt or select prompt to edit from profile page.</div>
     );
 };
 

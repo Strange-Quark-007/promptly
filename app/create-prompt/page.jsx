@@ -41,8 +41,9 @@ const CreatePrompt = () => {
 
     };
 
-    return (
+    return (session ?
         <Form type="Create" post={post} setPost={setPost} submitting={submitting} handleSubmit={createPrompt} />
+        : <div className="mt-20 text-lg text-gray-800 text-bl sm:text-xl max-w-2xl text-center">Please Login to Create Prompt</div>
     );
 };
 

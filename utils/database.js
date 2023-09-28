@@ -5,7 +5,6 @@ let isConnected = false;
 export const connectToDB = async () => {
 
     if (isConnected) {
-        console.log("MongoDB Connected");
         return;
     }
 
@@ -15,11 +14,8 @@ export const connectToDB = async () => {
             useNewUrlparser: true,
             useUnifiedTopology: true
         });
-
         isConnected = true;
-        console.log("MongoDB Connected");
     } catch (error) {
         console.log(error);
-
     }
 };

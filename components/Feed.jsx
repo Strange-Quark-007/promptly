@@ -33,6 +33,10 @@ const Feed = () => {
         setSearchText(e.target.value);
     };
 
+    const handleTagClick = () => {
+
+    };
+
 
     return (
         <section className="feed">
@@ -41,7 +45,7 @@ const Feed = () => {
                     value={searchText} onChange={handleSearchChange} required></input>
             </form>
 
-            <PromptCardList data={posts} handleTagClick={() => { }} />
+            <PromptCardList data={posts} handleTagClick={handleTagClick} />
         </section>
     );
 };

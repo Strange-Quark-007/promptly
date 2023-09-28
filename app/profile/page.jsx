@@ -42,14 +42,13 @@ const MyProfile = () => {
                 await fetch(`/api/prompt/${post._id.toString()}`, { method: 'DELETE' });
                 setModified(2);
             } catch (error) {
-                console.log(error);
+                // console.log(error);
             }
         }
     };
 
-    return (
-        <Profile name="My" desc="Welcome to your personalized profile"
-            data={posts} handleEdit={handleEdit} handleDelete={handleDelete} />
+    return (session ?
+        <Profile name="My" desc="Welcome to your personalized profile" data={posts} handleEdit={handleEdit} handleDelete={handleDelete} /> : <div className="mt-20 text-lg text-gray-800 text-bl sm:text-xl max-w-2xl text-left">Please Login to view your Profile</div>
     );
 };
 

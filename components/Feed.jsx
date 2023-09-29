@@ -23,7 +23,7 @@ const Feed = () => {
 
     useEffect(() => {
         const fetchPosts = async () => {
-            const response = await fetch('/api/prompt', { cache: 'no-store' });
+            const response = await fetch('/api/prompts/all');
             const data = await response.json();
             setAllPosts(data);
         };
@@ -31,7 +31,7 @@ const Feed = () => {
     }, []);
 
     const filterPrompts = (searchtext) => {
-        const regex = new RegExp(searchtext, "i"); // 'i' flag for case-insensitive search
+        const regex = new RegExp(searchtext, "i");
         return allPosts.filter((item) => (
             regex.test(item.creator.username) ||
             regex.test(item.tag) ||

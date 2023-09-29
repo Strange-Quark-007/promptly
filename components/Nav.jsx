@@ -60,7 +60,7 @@ const Nav = () => {
 
             {/* Mobile Navigation */}
 
-            <div className="sm:hidden flex relative">
+            <div className="sm:hidden flex">
                 {
                     session?.user ? (
                         <div className="flex">
@@ -85,12 +85,12 @@ const Nav = () => {
                         <>
                             {
                                 providers &&
-                                Object.values(providers).map((provider) => {
+                                Object.values(providers).map((provider) => (
                                     <button type="button" key={provider.name}
                                         onClick={() => signIn(provider.id)} className="black_btn" >
                                         Sign In
-                                    </button>;
-                                })
+                                    </button>
+                                ))
                             }
                         </>
                 }

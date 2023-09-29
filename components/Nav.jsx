@@ -60,7 +60,7 @@ const Nav = () => {
 
             {/* Mobile Navigation */}
 
-            <div className="sm:hidden flex">
+            <div className="sm:hidden flex relative">
                 {
                     session?.user ? (
                         <div className="flex">

@@ -27,11 +27,9 @@ const MyProfile = () => {
         if (session?.user.id)
             fetchPosts();
 
-        if (!session)
-            setLoader('hide');
-
         setTimeout(() => {
             setModified(0);
+            setLoader('hide');
         }, 2000);
     }, [modified, session]);
 

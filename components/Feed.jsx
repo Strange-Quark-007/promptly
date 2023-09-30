@@ -26,6 +26,12 @@ const Feed = () => {
             const response = await fetch('/api/prompt/all', { method: 'POST', cache: 'no-store' });
             const data = await response.json();
             setAllPosts(data);
+
+            if (response.status == 404) {
+                setTimeout(() => {
+                    fetchPosts();
+                }, 1000);
+            }
         };
         fetchPosts();
     }, []);

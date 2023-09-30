@@ -28,21 +28,20 @@ const UserProfile = ({ params }) => {
     useEffect(() => {
 
         const fetchPosts = async () => {
-            const response_post = await fetch(`/api/users/${params.id}/posts`);
             const user_res = await fetch(`/api/users/${params.id}`);
 
-            if (response_post.status == 200) {
-                const data = await response_post.json();
-                setPosts(data);
-            }
 
             if (user_res.status == 200) {
                 const user = await user_res.json();
                 setUser(user);
+                const response_post = await fetch(`/api/users/${params.id}/posts`);
+                const data = await response_post.json();
+                setPosts(data);
             }
             else {
                 setLoader('hide');
             }
+
 
         };
         if (params.id)

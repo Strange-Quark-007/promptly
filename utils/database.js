@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-let isConnected = false;
-
 export const connectToDB = async () => {
+
+    let isConnected = false;
 
     if (isConnected) {
         return;

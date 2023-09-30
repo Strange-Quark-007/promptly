@@ -29,7 +29,7 @@ const Feed = () => {
 
             if (response.status == 404) {
                 setTimeout(() => {
-                    fetchPosts();
+                    location.reload();
                 }, 1000);
             }
         };

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Form from '@components/Form';
+import withSuspense from "@components/withSuspense";
 
 const EditPrompt = () => {
 
@@ -17,7 +18,7 @@ const EditPrompt = () => {
 
     useEffect(() => {
         const getPromptDetails = async () => {
-            const response = await fetch(`api/prompt/${promptId}`);
+            const response = await fetch(`/api/prompt/${promptId}`);
             const data = await response.json();
 
             setPost({ prompt: data.prompt, tag: data.tag });
@@ -62,4 +63,4 @@ const EditPrompt = () => {
     );
 };
 
-export default EditPrompt;
+export default withSuspense(EditPrompt);
